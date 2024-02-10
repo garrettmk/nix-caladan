@@ -1,0 +1,38 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "NIXOS_CONFIG=$(pwd)/src/configuration.nix nixos-rebuild build"
+    },
+    {
+      "label": "deploy",
+      "type": "shell",
+      "command": "sudo ${workspaceFolder}/rebuild-switch.sh",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      }
+    },
+    {
+      "label": "deploy-from-cache",
+      "type": "shell",
+      "command": "sudo rm -rf /etc/nixos/* && sudo cp -r ./src/* /etc/nixos && sudo nixos-rebuild switch --option build-use-sandbox false",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      }
+    }
+  ]
+}

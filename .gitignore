@@ -1,0 +1,5 @@
+result
+secrets
+tmp
+*.key
+hardware-configuration.nix
